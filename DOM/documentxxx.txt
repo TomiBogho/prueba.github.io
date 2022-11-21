@@ -1,0 +1,62 @@
+Utilizamos el método querySelector para recorrer el árbol del DOM y encontrar el elemento que queremos utilizando JavaScript. Pero, existen otro métodos que pueden ser utilizados con la misma finalidad.
+
+document.getElementById(‘id’) selecciona el elemento por el id
+`document.getElementsByClassName(‘clase’) retorna un arreglo de los elementos por el nombre de la clase
+document.getElementsByTagName(‘tag’) retorna un arreglo de los elementos por el nombre del tag
+document.querySelectorAll(“selector”) regresa todos los elementos con el mismo nombre
+
+
+Lo que entiendo es que nos enseña que funciones son las que vinculan el JavaScript con el html, por ejemplo, para usar una etiqueta de html. usamos document.querySelector(por ej: title). Para asi poder hacer dinamica esa etiqueta title y responda a lo que sea que haga en JavaScript. 
+
+-----
+Nota: 
+Hay que siempre referenciar el archivo .js en el html usando la etiqueta <scripts></scripts>, se referencia siempre antes de cerrar el </body>
+
+-------
+
+Una vez que usamos la funcion document.querySelector en el archivo .js, tengo que referenciarle algun atributo de html. Se suele referenciar las etiquetas "dataType", que son etiquetas que permiten a la información propietaria ser intercambiada entre el HTML y su representación en el DOM que puede ser usada por scripts, es decir, el document.querySelector. Onda, traen a JavaScript la informacion de toda la etiqueta de por ej <button>.
+Luego, una vez referenciado (habiendo agregado el dataType tambien en html), haces que ese document.querySelector sea una variable, es decir, por ejemplo:
+const btn =  document.querySelector("[data-***-***]"); POR LO MENOS LOS DATA, SE REFERENCIAN SIEMPRE CON COMILLAS Y CORCHETES 
+"[]" 
+
+
+-------
+
+si yo tengo mi button (btn), por ejemplo el de esta pagina es el boton "Agregar", quiero que cuando el usuario le de click, nosotros sepamos que el usuario está realizando esa acción. Es decir, necesitamos que alguien escuche o, como se le conoce en inglés, necesitamos un listener. Este listener va a ser de tipo click (Hay otros listeners). 
+
+--> listener = click
+
+Y después tenemos la acción que se va a ejecutar cuando el usuario genere este evento, por ej, que haga un console.log que diga "crear tarea". 
+
+--> O sea, lo que queremos que el elemento btn ejecute algo cuando el usuario le da clic.
+
+La funcion que va a generar el listener, es ".addEventListener", y va a ser generado a traves del evento click. El addEventListener recibe dos parámetros. El primero es el evento que quieres escuchar. El cual, en este caso, va a ser el evento click. El segundo es lo que queremos que pase una vez que el usuario haga click, en este caso una funcion.
+
+--> btn.addEventListener("click", function(){
+    console.log("crear tarea");
+})
+
+---
+
+EL evento.preventDefault() es un método que vive dentro del prototipo de evento "event", y se suma a aquellos eventos de navegador que tienen la propiedad cancelable, por ejemplo, el evento click. Quienes no tienen esta propiedad, preventDefault() no hará nada con ellos, por ejemplo, con un evento scroll.
+
+Lo que hace el método es que señala al navegador que el comportamiento por defecto asociado a un evento cancelable no se ejecute, pero a la vez sin detener la propagación del mismo, significando que el evento todavía puede afectar el DOM, pero naturalmente se espera que tú seas quien cree un comportamiento alterno. Onda, uno normalmente lo usa para hacer que se ejecute otra accion que nosotros hayamos especificado en lugar de esa que estaba por default. 
+
+Por ejemplo, se usa más comúnmente para evitar que una página se refresque automáticamente al momento de llamar al evento submit en un formulario y para evitar este mismo comportamiento en un evento click.
+
+El ejemplo más típico, es cuando creamos un formulario, si tiene un atributo "action" el comportamiento por defecto es redirigir la página hacia la dirección del action, sino por defecto refresca la página actual. Es decir, si necesitas que tu página web no se actualice después del submit, debería colocar event.preventDefault() en la función que maneja el evento.
+
+-----
+
+El <span></span> es lo mismo que <p></p> pero además sirve para aplicar estilo al texto o agrupar elementos en línea.
+
+
+-----
+
+Todos los elementos en nuestro árbol de DOM son nodos y todos los nodos pueden ser accedidos vía JavaScript. Los nodos pueden ser eliminados, creados o modificados. Durante el curso utilizamos el método appendChild que siempre es implementado al final del nodo, para colocar un nodo hijo dentro del nodo padre.
+
+Existen otros métodos que podemos utilizar para manipular nodos:
+
+insertBefore(padre, hijo): Coloca un nodo antes del otro
+replaceChild(elemento1, elemento2): Sustituye el nodo del elemento 1 por el nodo del elemento 2
+removeChild(elemento): Remueve un nodo del árbol
